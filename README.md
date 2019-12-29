@@ -1,12 +1,12 @@
 
 ## Tasks Project
 
-- **[Preview Link](https://demo.abdullah.link/tasks)**
+- **[Preview Link](http://demo.abdullah.link/tasks)**
 
 ## Technologies used
 - **PHP**
 - **Laravel 6**
-- **AJAX*
+- **AJAX**
 - **Bootstrap 4**
 - **MySQL**
 - **select2**
