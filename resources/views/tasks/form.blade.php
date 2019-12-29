@@ -55,7 +55,7 @@
             placeholder: "Choose member...",
             // minimumInputLength: 2,
             ajax: {
-                url: '/users/search',
+                url: 'users/search',
                 dataType: 'json',
                 data: function (params) {
                     return {
@@ -137,7 +137,10 @@
                             $('#tasks_list .card-body').prepend(
                                 response.data
                             );
-                            $('#tasks_list .card-body').lastChild.remove();
+                            if($("#tasks_list .card-body .media").length>10){
+
+                                $('#tasks_list .card-body .media:last-child').remove();
+                            }
                         }
                     });
                 }

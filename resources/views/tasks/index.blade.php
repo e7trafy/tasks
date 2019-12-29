@@ -26,7 +26,7 @@
                     <div class="card-header">Assign new task</div>
 
                     <div class="card-body">
-                        <form id="addTask" action="{{route('store')}}" method="POST">
+                        <form id="addTask" action="{{route('task.store')}}" method="POST">
                             @include('tasks.form')
                             <div class="clearfix"></div>
                         </form>
@@ -71,7 +71,7 @@
                 },
                 success: function (data) {
                     console.log(data);
-                    $(element).parent().html('<span class="text-success">Done </span>');
+                    $(element).parent().html('<span class="text-success font-weight-bold">Done </span>');
                 },
                 error: function (e) {
                 }
