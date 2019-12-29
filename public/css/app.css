@@ -1,0 +1,17 @@
+#tasks_list{
+    height: 50vh;
+
+}
+
+#tasks_list .card-body{
+
+    overflow: scroll;
+    overflow-scrolling: auto;
+    overflow-x: hidden;
+}
+
+addBtn{
+    position: absolute;
+    left:    0%;
+    top:   50px;
+}

@@ -11,6 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Auth::routes();
+
+Route::middleware(['auth'])->group(function () {
+    Route::resource('/', 'TaskController');
+    Route::post('complete/{task}', 'TaskController@complete')->name('task.complete');
+    Route::get('users/search', 'UsersController@search')->name('users.search');
 });
