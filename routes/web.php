@@ -15,7 +15,7 @@
 Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', 'TaskController@index')->name('task.complete');
+    Route::get('/', 'TaskController@index')->name('tasks.index');
     Route::post('complete/{task}', 'TaskController@complete')->name('task.complete');
     Route::post('store', 'TaskController@store')->name('task.store');
 

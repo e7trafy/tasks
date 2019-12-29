@@ -40,6 +40,10 @@
                     <div class="card-body ">
                         @component('tasks.tasksList',['tasks'=>$tasks])
                         @endcomponent
+
+                    </div>
+                    <div id="load_lable" class="p-2">
+
                     </div>
                 </div>
 
@@ -52,7 +56,7 @@
 @push('js')
     <script>
         let csrf = '{{csrf_token()}}';
-
+        let count = '{{$tasks->count()}}';
         function markDone(element, taskId) {
 
             $.ajax({
@@ -81,33 +85,37 @@
         var pageNumber = 2;
         let ajaxredy = true;
         $('#tasks_list .card-body').scroll(function () {
-            console.log("1 " + ajaxredy);
+            // console.log("1 " + ajaxredy);
             if (ajaxredy == false) return;
-            console.log($('#tasks_list .card-body').scrollTop());
-            console.log($('#tasks_list .media').height());
+            // console.log($('#tasks_list .card-body').scrollTop());
+            // console.log($('#tasks_list .media').height());
             // if ($('#tasks_list .card-body').scrollTop() >= ( 600 * (pageNumber - 1)) ) {
             // if ($('#tasks_list .card-body').scrollTop() + $('#tasks_list .media').height() + 550 == $(document).height() ) {
-            if ($('#tasks_list .card-body').scrollTop() >= ($('#tasks_list .media').height() * 10 * (pageNumber - 1)) - 220) {
+            if ($('#tasks_list .card-body').scrollTop() >= ($('#tasks_list .media').height() * count * (pageNumber - 1)) - 220) {
                 ajaxredy = false;
-                console.log("2 " + ajaxredy);
+                $('#load_lable').html("<span class='text-info font-weight-bold'>loading tasks ....</span>");
+                // console.log("2 " + ajaxredy);
 
                 $.ajax({
                     type: 'GET',
                     url: "?page=" + pageNumber,
                     success: function (data) {
                         pageNumber += 1;
-                        if (data.html.length == 0) {
-                            $('#tasks_list .card-body').append("<span class='text-danger font-weight-bold'>No More Tasks</span>");
-                            console.log("3 " + ajaxredy);
+                        if (data.count == 0) {
+                            $('#load_lable').html("<span class='text-danger font-weight-bold'>No More Tasks</span>");
+                            // console.log("3 " + ajaxredy);
 
                         } else {
-                            console.log(data);
-                            $('#tasks_list .card-body').append(data.html);
-                            console.log("1 " + ajaxredy);
+                            $('#load_lable').html("");
+                            // console.log(data);
+                            // $('#tasks_list .card-body').append(data.html);
+                            $( data.html ).insertAfter( '#tasks_list .card-body .media:last-child' );
+                            count= data.count;
+                            // console.log("1 " + ajaxredy);
 
                         }
                         ajaxredy = true;
-                        console.log("5 " + ajaxredy);
+                        // console.log("5 " + ajaxredy);
 
                     }, error: function (data) {
 

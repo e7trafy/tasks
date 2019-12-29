@@ -19,7 +19,7 @@ class TaskController extends Controller
         }
         if ($request->ajax()) {
             $view = view('tasks.tasksList', compact('tasks'))->render();
-            return response()->json(['html' => $view]);
+            return response()->json(['count' => $tasks->count() ,'html' => $view]);
         }
         return view('tasks.index', compact('tasks'));
     }

@@ -82,10 +82,10 @@
             $('#datetimepicker5').datetimepicker({format: 'L', minDate: date});
         });
         $(document).ready(function () {
-            $("#addTask").validate({
+            let validator = $("#addTask").validate({
                 rules: {
                     member: "required",
-                    date: {
+                    due_date: {
                         required: true,
                         date: true,
                     },
@@ -97,7 +97,7 @@
                 },
                 messages: {
                     member: "Please select team member",
-                    date: {
+                    due_date: {
                         required: "Please select due date",
                         date: "Your must select a valid date"
                     },
@@ -131,6 +131,7 @@
                         data: $(form).serialize(),
                         success: function (response) {
                             $("#addTask")[0].reset();
+                            // validator.resetForm();
 
                             $("#memberName").val('').trigger('change')
 
